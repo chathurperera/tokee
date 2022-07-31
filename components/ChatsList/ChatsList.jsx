@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "../ContactList/ContactList.module.scss";
 import UserChat from "../UserChat/UserChat";
 
-const ChatsList = ({selectedChat,setSelectedChat}) => {
+export const ChatsList = ({selectedChat,setSelectedChat}) => {
   const [searchTerm, setSearchTerm] = useState("");
 
   return (
@@ -17,4 +17,4 @@ const ChatsList = ({selectedChat,setSelectedChat}) => {
   );
 };
 
-export default ChatsList;
+export const MemoizedChatsList = React.memo(ChatsList);

@@ -1,16 +1,38 @@
+.contactListHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid #ebe9f1;
+  border-right: 1px solid #ebe9f1;
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  z-index: 99999;
+  padding: 10px ;
+  .addContact{
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    margin-right: 10px;
+    padding-top: 5px;
+  }
+}
+
 .userImage {
   padding: 10px;
   width: max-content;
   position: relative !important;
   .pp {
-    width: 50px;
-    height: 50px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
     box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
     border: 2px solid rgb(235, 167, 206);  
     cursor: pointer;
-    & > span{
+    &  img{
+      // object-fit: cover;
        border-radius: 50%;
+      //  width: 100%;
      }
   }
   .logOut{
@@ -45,8 +67,8 @@
   .onlineDot {
     position: absolute;
     border-radius: 50%;
-    bottom: 15px;
-    right: 15px;
+    bottom: 0px;
+    right: 0px;
     z-index: 9999;
     width: 10px;
     height: 10px;
@@ -240,21 +262,4 @@
     }
   }
 }
-.contactListHeader {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  border-bottom: 1px solid #ebe9f1;
-  border-right: 1px solid #ebe9f1;
-  position: sticky;
-  top: 0;
-  background-color: #fff;
-  z-index: 99999;
-  .addContact{
-    width: 35px;
-    height: 35px;
-    cursor: pointer;
-    margin-right: 10px;
-    padding-top: 5px;
-  }
-}
+

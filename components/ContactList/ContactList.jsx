@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../ContactList/ContactList.module.scss";
 import userProfile from "../../assets/images/userProfile.jpg";
 import Contact from "../Contact/Contact";
 
-const ContactList = ({ chatsSnapshot, contacts, setSelectedChat }) => {
+export const ContactList = ({ chatsSnapshot, contacts, setSelectedChat }) => {
   const [searchTerm, setSearchTerm] = useState("");
+  useEffect(() => {
+    console.log('UseEffect ran from ContactsList')
+  },[])
+  console.log('ran from ContactsList')
 
   return (
     <div className={styles.contactList}>
@@ -26,4 +30,4 @@ const ContactList = ({ chatsSnapshot, contacts, setSelectedChat }) => {
   );
 };
 
-export default ContactList;
+export const MemoizedContactList = React.memo(ContactList)

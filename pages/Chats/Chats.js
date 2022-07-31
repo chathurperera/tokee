@@ -7,8 +7,8 @@ import demoPP2 from "../../assets/images/demoPP2.png";
 import powerOff from "../../assets/images/power-off.png";
 import addNewUser from "../../assets/images/addNewUser.png";
 import ChatArea from "../../components/ChatArea/ChatArea";
-import ChatsList from "../../components/ChatsList/ChatsList";
-import ContactList from "../../components/ContactList/ContactList";
+import {MemoizedChatsList} from "../../components/ChatsList/ChatsList";
+import {MemoizedContactList} from "../../components/ContactList/ContactList";
 import styles from "../../components/ContactList/ContactList.module.scss";
 import AddContact from "../../components/AddContact/AddContact";
 import { db, auth } from "../../firebase-config";
@@ -23,35 +23,16 @@ const Chats = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [showLogOutBox, setShowLogOutBox] = useState(false);
   const [selectedChat, setSelectedChat] = useState({});
-  const [contacts, setContacts] = useState([
-    {
-      name: "Felecia Rower",
-      imageURL: userProfile,
-      bio: "Hi there, im using Chatmore 😉🤞",
-    },
-    {
-      name: "Joaquina Weisenborn",
-      imageURL: demoPP2,
-      bio: "Hi there, im using Chatmore 😉🤞",
-    },
-    {
-      name: "Verla Morgano",
-      imageURL: demoPP3,
-      bio: "Hi there, im using Chatmore 😉🤞",
-    },
-    {
-      name: "Sal Piggee",
-      imageURL: demoPP4,
-      bio: "Hi there, im using Chatmore 😉🤞",
-    },
-  ]);
 
+useEffect(() => {
+console.log('UseEffect ran from Chats')
+},[])
   const userChatRef = query(
     collection(db, "chats"),
     where("users", "array-contains", user.email)
   );
   const [chatsSnapshot] = useCollection(userChatRef);
-  console.log('chatsSnapshot from chats page' , chatsSnapshot);
+ console.log("user",user)
 
   const addContact = async (newContactEmail) => {
     if (
@@ -91,7 +72,7 @@ const Chats = () => {
               className={styles.pp}
               onClick={() => setShowLogOutBox((prevState) => !prevState)}
             >
-              <Image src={userProfile} alt="user profile" />
+              <Image src={user?.photoURL} layout='fill' width={50} height={50} alt="user profile" />
             </div>
             <div className={styles.onlineDot}></div>
             {showLogOutBox && (
@@ -136,9 +117,8 @@ const Chats = () => {
         </div>
         <div className="sidebar-container">
           {showAddUser && <AddContact addContact={addContact} />}
-          <ChatsList setSelectedChat={setSelectedChat} />
-          <ContactList
-            contacts={contacts}
+          <MemoizedChatsList setSelectedChat={setSelectedChat} />
+          <MemoizedContactList
             setSelectedChat={setSelectedChat}
             chatsSnapshot={chatsSnapshot}
           />
