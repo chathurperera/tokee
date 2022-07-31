@@ -1,13 +1,13 @@
 import React from 'react'
 import styles from "../ContactList/ContactList.module.scss";
 import userProfile from "../../assets/images/userProfile.jpg";
-
+import Image from 'next/image';
 const UserChat = () => {
   return (
     <div className={styles.chatCard}>
         <div className={styles.chatCardImage}>
-            <img src={userProfile} alt="" />
-            <div></div>
+            <Image src={userProfile} alt="" />
+            <div className={styles.onlineDot}></div>
         </div>
         <div className={styles.chatCardDetails}>
             <p className={styles.name}>Felecia Rower</p>

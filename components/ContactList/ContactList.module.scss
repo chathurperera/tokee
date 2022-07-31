@@ -74,9 +74,6 @@
   }
 }
 
-.addUser{
-
-}
 .contactList {
   border-right: 1px solid #ebe9f1;
 
@@ -107,9 +104,9 @@
   .chatCardImage {
     width: max-content;
     position: relative;
+    width: 45px;
+    height: 45px;
     img {
-      width: 45px;
-      height: 45px;
       border-radius: 50%;
     }
     div {
@@ -186,9 +183,9 @@
   .chatCardImage {
     width: max-content;
     position: relative;
+    width: 45px;
+    height: 45px;
     img {
-      width: 45px;
-      height: 45px;
       border-radius: 50%;
     }
     div {
@@ -252,8 +249,5 @@
     cursor: pointer;
     margin-right: 10px;
     padding-top: 5px;
-    // display: flex;
-    // align-items: center;
-    
   }
 }

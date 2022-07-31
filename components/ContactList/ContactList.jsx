@@ -10,9 +10,9 @@ const ContactList = ({ contacts, setSelectedChat }) => {
     <div className={styles.contactList}>
       <div className={styles.contactListBody}>
         <h3>Contacts</h3>
-        {contacts?.map((contact) => {
+        {contacts?.map((contact , index) => {
           return (
-            <Contact contact={contact} setSelectedChat={setSelectedChat} />
+            <Contact key={index} contact={contact} setSelectedChat={setSelectedChat} />
           );
         })}
       </div>
