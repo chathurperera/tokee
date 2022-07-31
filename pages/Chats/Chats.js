@@ -14,9 +14,7 @@ import AddContact from "../../components/AddContact/AddContact";
 import { db, auth } from "../../firebase-config";
 import { signOut } from "firebase/auth";
 import { doc, setDoc, collection, query, where } from "firebase/firestore";
-import ImageWrapper from "../../components/ImageWrapper/ImageWrapper";
 import Image from "next/image";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollection } from "react-firebase-hooks/firestore";
 
 const Chats = () => {

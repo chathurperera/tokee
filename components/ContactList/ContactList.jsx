@@ -5,7 +5,7 @@ import Contact from "../Contact/Contact";
 
 const ContactList = ({ chatsSnapshot, contacts, setSelectedChat }) => {
   const [searchTerm, setSearchTerm] = useState("");
-  console.log('chatsSnapshot from Contacts list' , chatsSnapshot);
+
   return (
     <div className={styles.contactList}>
       <div className={styles.contactListBody}>
@@ -16,7 +16,7 @@ const ContactList = ({ chatsSnapshot, contacts, setSelectedChat }) => {
               key={contact.id}
               contact={contact}
               id={contact.id}
-              user={contact.data().users}
+              users={contact.data().users}
               setSelectedChat={setSelectedChat}
             />
           );
