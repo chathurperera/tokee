@@ -72,8 +72,11 @@ const Chats = () => {
       <aside>
         <div className={styles.contactListHeader}>
           <div className={styles.userImage}>
-            <div className={styles.pp} onClick={() => setShowLogOutBox(prevState => !prevState)}>
-              <Image src={userProfile}  alt="user profile"  />
+            <div
+              className={styles.pp}
+              onClick={() => setShowLogOutBox((prevState) => !prevState)}
+            >
+              <Image src={userProfile} alt="user profile" />
             </div>
             <div className={styles.onlineDot}></div>
             {showLogOutBox && (
@@ -107,14 +110,14 @@ const Chats = () => {
             />
           </div>
           <div className={styles.addContact}>
-            
+            <Image
+            objectFit="contain"
+            layout="responsive"
+              src={addNewUser}
+              onClick={() => setShowAddUser((prevState) => !prevState)}
+              alt="add new user"
+            />
           </div>
-          <img
-            
-            onClick={() => setShowAddUser((prevState) => !prevState)}
-            src={addNewUser}
-            alt="add new user"
-          />
         </div>
         <div className="sidebar-container">
           {showAddUser && <AddContact addContact={addContact} />}
