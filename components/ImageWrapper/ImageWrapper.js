@@ -3,7 +3,7 @@ import Image from 'next/image'
 const ImageWrapper = ({imageURL , altText}) => {
   return (
     <div>
-        <Image src={imageURL} alt={altText} />
+        <Image src={imageURL} layout='fill' alt={altText} />
     </div>
   )
 }

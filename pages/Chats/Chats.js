@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 // import "../App.scss";
-import userProfile from "../../assets/images/userProfile.jpg";
+import userProfile from "../../public/userProfile.jpg";
 import demoPP4 from "../../assets/images/demoPP4.png";
 import demoPP3 from "../../assets/images/demoPP3.png";
 import demoPP2 from "../../assets/images/demoPP2.png";
@@ -72,21 +72,14 @@ const Chats = () => {
       <aside>
         <div className={styles.contactListHeader}>
           <div className={styles.userImage}>
-            <ImageWrapper imageURL={userProfile} />
-            <div className={styles.pp}>
-              <Image src={userProfile} alt="user profile" />
+            <div className={styles.pp} onClick={() => setShowLogOutBox(prevState => !prevState)}>
+              <Image src={userProfile}  alt="user profile"  />
             </div>
-            {/* <img
-              className={styles.pp}
-              src={userProfile}
-              alt="user profile"
-              onClick={() => setShowLogOutBox((prevState) => !prevState)}
-            /> */}
-            <div></div>
+            <div className={styles.onlineDot}></div>
             {showLogOutBox && (
               <div className={styles.logOut}>
                 <p onClick={logout}>
-                  <img src={powerOff} alt="log out" />
+                  <Image src={powerOff} alt="log out" />
                   Sign out
                 </p>
               </div>
@@ -113,8 +106,11 @@ const Chats = () => {
               className={styles.searchInput}
             />
           </div>
+          <div className={styles.addContact}>
+            
+          </div>
           <img
-            className={styles.addContact}
+            
             onClick={() => setShowAddUser((prevState) => !prevState)}
             src={addNewUser}
             alt="add new user"
