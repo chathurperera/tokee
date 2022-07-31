@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import googleIcon from "../../assets/images/google.png";
 import texting from "../../assets/images/Texting.png";
 import styles from "../Login/login.module.scss";
+import Link from 'next/link'
+import Image from 'next/image'
 import {
   GoogleAuthProvider,
   signInWithPopup,
@@ -11,7 +13,6 @@ import { auth } from "../../firebase-config.js";
 import Spinner from "../../components/Spinner/Spinner";
 
 const Login = () => {
-  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [loginDetails, setLoginDetails] = useState({
     email: "",
@@ -22,10 +23,11 @@ const Login = () => {
     signInWithPopup(auth, provider).then((result) => {
       console.log('resolved')
       localStorage.setItem('user',result.user.displayName)
-      navigate("/chats");
     });
   };
-
+  useEffect(() => {
+    console.log('useEffect ran in Login')
+  },[])
   const login = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -40,7 +42,7 @@ const Login = () => {
             Enter your credentials to access your account
           </p>
           <button className={styles.loginWithGoogle} onClick={signInWithGoogle}>
-            <img src={googleIcon} alt="googleIcon" />
+            <Image src={googleIcon} alt="googleIcon" />
             Log In with Google
           </button>
           <div className={styles.divider}>
@@ -83,13 +85,13 @@ const Login = () => {
               {loading ? <Spinner /> : "Login"}
             </button>
             <p className={styles.redirect}>
-              New to ChatMore ? <Link to="/signUp">Sign up</Link>{" "}
+              New to ChatMore ? <Link href="/signUp">Sign up</Link>{" "}
             </p>
           </form>
         </div>
       </div>
       <div className={styles.loginRight}>
-        <img src={texting} alt="texting image" />
+        <Image src={texting} alt="texting image" />
       </div>
     </main>
   );

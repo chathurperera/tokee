@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // import "../App.scss";
 import userProfile from "../../public/userProfile.jpg";
 import demoPP4 from "../../assets/images/demoPP4.png";
@@ -15,12 +15,10 @@ import { db, auth } from "../../firebase-config";
 import { signOut } from "firebase/auth";
 import { doc, setDoc, collection, query, where } from "firebase/firestore";
 import ImageWrapper from "../../components/ImageWrapper/ImageWrapper";
-// import { useNavigate } from "react-router-dom";
 import Image from "next/image";
 
 const Chats = () => {
-  const user = auth.currentUser;
-  console.log("user", user);
+  const user = auth.currentUser;  
   const [showAddUser, setShowAddUser] = useState(false);
   const [showLogOutBox, setShowLogOutBox] = useState(false);
   const [selectedChat, setSelectedChat] = useState({});
@@ -47,8 +45,6 @@ const Chats = () => {
     },
   ]);
 
-  //   const navigate = useNavigate();
-
   const addContact = async (newContactEmail) => {
     if (newContactEmail === "") {
       console.log("is empty");
@@ -64,7 +60,7 @@ const Chats = () => {
   const logout = () => {
     setShowLogOutBox(false);
     signOut(auth);
-    navigate("/login");
+    // navigate("/login");
   };
 
   return (

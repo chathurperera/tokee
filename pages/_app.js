@@ -10,6 +10,7 @@ import { doc, setDoc } from "firebase/firestore";
 function MyApp({ Component, pageProps }) {
   const [user, loading] = useAuthState(auth);
   useEffect(() => {
+    console.log('useEffect ran in Appjs')
     if (user) {
       const handleUserLogin = async () => {
         await setDoc(doc(db, "users", user.email), {
