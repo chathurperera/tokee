@@ -1,0 +1,46 @@
+.chatArea{
+    background-image: url('../../assets/images/chatAppBGImage.svg');
+    background-color: #f2f0f7;
+    background-repeat: repeat;
+    background-size: 210px;
+    height: 100%;
+    position: relative;
+}
+.startChat{
+    padding: 50px 0;
+    margin: 0 auto;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @media (max-width:678px) {
+        display: none;
+    }
+    &Image{
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        background-color: #fff;
+        padding: 80px;
+        border-radius: 50%;
+        width: 300px;
+        height: 300px;
+        margin: 0 auto;
+        display: grid;
+        place-items: center;
+        justify-content: center;
+        img{
+            width: 100px;
+        }
+    }
+
+    .startConversation{
+        // box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        width: max-content;
+        padding: 10px 20px;
+        border-radius: 40px;
+        background-color: #fff;
+         margin: 0 auto;
+        margin-top: 20px;
+        color: #6e6b7b;
+        font-size: 18px;
+    }
+}

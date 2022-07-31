@@ -1,0 +1,29 @@
+.addContact{
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    margin: 10px;
+    padding: 12px;
+    background-color: whitesmoke;
+    border-radius: 4px;
+    .inputWrap{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    h4{
+        margin-bottom: 5px;
+    }
+    input{
+        margin-top: 5px;
+        border: none;
+        width: 100%;
+        padding: 8px;
+    }
+    button{
+        padding: 8px 12px;
+        border: none;
+        cursor: pointer;
+        background: #010203;
+        color:#fff;
+        border-radius: 5px;
+    }
+}
