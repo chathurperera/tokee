@@ -3,16 +3,22 @@ import styles from "../ContactList/ContactList.module.scss";
 import userProfile from "../../assets/images/userProfile.jpg";
 import Contact from "../Contact/Contact";
 
-const ContactList = ({ contacts, setSelectedChat }) => {
+const ContactList = ({ chatsSnapshot, contacts, setSelectedChat }) => {
   const [searchTerm, setSearchTerm] = useState("");
-
+  console.log('chatsSnapshot from Contacts list' , chatsSnapshot);
   return (
     <div className={styles.contactList}>
       <div className={styles.contactListBody}>
         <h3>Contacts</h3>
-        {contacts?.map((contact , index) => {
+        {chatsSnapshot?.docs.map((contact) => {
           return (
-            <Contact key={index} contact={contact} setSelectedChat={setSelectedChat} />
+            <Contact
+              key={contact.id}
+              contact={contact}
+              id={contact.id}
+              user={contact.data().users}
+              setSelectedChat={setSelectedChat}
+            />
           );
         })}
       </div>

@@ -16,10 +16,13 @@ import { signOut } from "firebase/auth";
 import { doc, setDoc, collection, query, where } from "firebase/firestore";
 import ImageWrapper from "../../components/ImageWrapper/ImageWrapper";
 import Image from "next/image";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { useCollection } from "react-firebase-hooks/firestore";
 
 const Chats = () => {
-  const user = auth.currentUser;  
+  const user = auth.currentUser;
   const [showAddUser, setShowAddUser] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
   const [showLogOutBox, setShowLogOutBox] = useState(false);
   const [selectedChat, setSelectedChat] = useState({});
   const [contacts, setContacts] = useState([
@@ -45,8 +48,19 @@ const Chats = () => {
     },
   ]);
 
+  const userChatRef = query(
+    collection(db, "chats"),
+    where("users", "array-contains", user.email)
+  );
+  const [chatsSnapshot] = useCollection(userChatRef);
+  console.log('chatsSnapshot from chats page' , chatsSnapshot);
+
   const addContact = async (newContactEmail) => {
-    if (newContactEmail === "") {
+    if (
+      newContactEmail === "" &&
+      !chatAlreadyExists(input) &&
+      input !== user.email
+    ) {
       console.log("is empty");
       return;
     }
@@ -61,6 +75,13 @@ const Chats = () => {
     setShowLogOutBox(false);
     signOut(auth);
     // navigate("/login");
+  };
+
+  const chatAlreadyExists = (recipientEmail) => {
+    return !!chatsSnapshot?.docs.find(
+      (chat) =>
+        chat.data().users.find((user) => user === recipientEmail)?.length > 0
+    );
   };
 
   return (
@@ -107,8 +128,8 @@ const Chats = () => {
           </div>
           <div className={styles.addContact}>
             <Image
-            objectFit="contain"
-            layout="responsive"
+              objectFit="contain"
+              layout="responsive"
               src={addNewUser}
               onClick={() => setShowAddUser((prevState) => !prevState)}
               alt="add new user"
@@ -118,7 +139,11 @@ const Chats = () => {
         <div className="sidebar-container">
           {showAddUser && <AddContact addContact={addContact} />}
           <ChatsList setSelectedChat={setSelectedChat} />
-          <ContactList contacts={contacts} setSelectedChat={setSelectedChat} />
+          <ContactList
+            contacts={contacts}
+            setSelectedChat={setSelectedChat}
+            chatsSnapshot={chatsSnapshot}
+          />
         </div>
       </aside>
       <div className="chat-area">
