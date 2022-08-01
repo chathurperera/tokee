@@ -7,9 +7,11 @@ import { auth, db } from "../../firebase-config";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { doc, setDoc, collection, query, where } from "firebase/firestore";
+import { useRouter } from "next/router";
 
 const Contact = ({ contact, setSelectedChat, id, users }) => {
   const [user] = useAuthState(auth);
+  const router = useRouter();
   const recipientEmail = getRecipientEmail(users, user);
   const recipientEmailRef = query(
     collection(db, "users"),
@@ -18,7 +20,13 @@ const Contact = ({ contact, setSelectedChat, id, users }) => {
 
   const [recipientSnapShot] = useCollection(recipientEmailRef);
   const recipient = recipientSnapShot?.docs?.[0]?.data();
-
+  
+  const enterChat = (id) => {
+    // router.push(`/chat/${id}`);
+    console.log('id',id)
+    setSelectedChat(id);
+  };
+  
   const bgColorList = [
     "#c2a36e",
     "#403118",
@@ -28,11 +36,14 @@ const Contact = ({ contact, setSelectedChat, id, users }) => {
     "#95cc27",
   ];
   const getRandomColor = (colors) => {
-    return colors[Math.floor(Math.random() * colors.length + 1)];
+    return colors[Math.floor(Math.random() * colors.length)];
   };
   return (
-    <div className={styles.chatCard} onClick={() => setSelectedChat(contact)}>
-      <div className={styles.chatCardImage} style={{ backgroundColor: getRandomColor(bgColorList) }}>
+    <div className={styles.chatCard} onClick={() => enterChat(id)}>
+      <div
+        className={styles.chatCardImage}
+        style={{ backgroundColor: getRandomColor(bgColorList) }}
+      >
         {recipient?.photoURL ? (
           <Image src={recipient?.photoURL} alt="profile image" />
         ) : (

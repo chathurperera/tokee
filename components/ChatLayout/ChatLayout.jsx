@@ -7,30 +7,50 @@ import dots from "../../assets/images/dots.png";
 import phone from "../../assets/images/phone.png";
 import sendMessage from "../../assets/images/send-message.png";
 import attachment from "../../assets/images/attachment.png";
+import Image from "next/image";
 
-const ChatLayout = () => {
+const ChatLayout = ({ selectedChat }) => {
   return (
     <div className={styles.chatLayout}>
       <div className={styles.chatLayoutHeader}>
         <div className={styles.profileImage}>
-          <img src={profileImage} alt="profile image" />
+          <div className={styles.profileImageWrapper}>
+            <Image src={profileImage} alt="profile image" />
+          </div>
           <span className={styles.onlineIndicator}></span>
-          <p>Sal Piggee</p>
+          <p>{selectedChat}</p>
         </div>
         <div className={styles.icons}>
-          <img src={phone} alt="phone icon" />
-          <img src={video} alt="video icon" />
-          <img src={search} alt="search icon" />
-          <img src={dots} alt="dots icon" />
+          <div className={styles.iconsWrapper}>
+            <Image src={phone} alt="phone icon" />
+          </div>
+          <div className={styles.iconsWrapper}>
+            <Image src={video} alt="video icon" />
+          </div>
+          <div className={styles.iconsWrapper}>
+            <Image src={search} alt="search icon" />
+          </div>
+          <div className={styles.iconsWrapper}>
+            <Image src={dots} alt="dots icon" />
+          </div>
         </div>
       </div>
       <div className={styles.chatWindow}>
         <h1>ss</h1>
       </div>
       <div className={styles.messagingArea}>
-        <img className={styles.attachmentIcon} src={attachment} alt="attachment" />
+        <div>
+          <Image
+            className={styles.attachmentIcon}
+            src={attachment}
+            alt="attachment"
+          />
+        </div>
         <input type="text" name="" placeholder="Enter your message" id="" />
-        <img src={sendMessage} alt="send message icon" />
+        <div>
+        <Image src={sendMessage} alt="send message icon" />
+
+        </div>
       </div>
     </div>
   );

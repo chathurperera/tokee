@@ -2,7 +2,7 @@
     &Header{
         background-color: #fff;
         padding: 0 14px;
-        height: 75px;
+        height: 60px;
         display: flex;
         justify-content: space-between;
     }
@@ -13,6 +13,9 @@
         gap:10px;
         position: relative;
         width:max-content;
+        &Wrapper{
+            width: 45px;
+        }
         .onlineIndicator{
             width: 10px;
             height: 10px;
@@ -20,7 +23,7 @@
             background: red;
             position: absolute;
             left: 32px;
-            bottom: 15px;
+            bottom: 17px;
             display: block;
         }
         p{
@@ -39,17 +42,19 @@
         display: flex;
         gap: 15px;
         align-items: center;
-
-        img{
-            cursor: pointer;
-            width: 18px;
+        &Wrapper{
+            width: 20px;
+            img{
+                cursor: pointer;
+                // width: 18px;
+            }
         }
     }
     .messagingArea{
         border-left: 1px solid #ebe9f1;
         position: absolute;
         width: 100%;
-        bottom: 0;
+        bottom: -10px;
         padding: 10px;
         margin-left: -10px;
         background-color: #fff;

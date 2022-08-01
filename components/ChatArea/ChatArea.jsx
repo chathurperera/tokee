@@ -5,14 +5,14 @@ import ChatLayout from "../ChatLayout/ChatLayout";
 const ChatArea = ({ selectedChat }) => {
   return (
     <div className={styles.chatArea}>
-      {Object.keys(selectedChat).length === 0  ? 
+      {selectedChat === "" ? 
         <div className={styles.startChat}>
           <div className={styles.startChatImage}>
             <img src={beginChat} alt="" />
             <div className={styles.startConversation}>Start Conversation </div>
           </div>
         </div>
-      : <ChatLayout /> }
+      : <ChatLayout selectedChat={selectedChat} /> }
     </div>
   );
 };

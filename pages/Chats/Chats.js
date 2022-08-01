@@ -16,17 +16,15 @@ import { signOut } from "firebase/auth";
 import { doc, setDoc, collection, query, where } from "firebase/firestore";
 import Image from "next/image";
 import { useCollection } from "react-firebase-hooks/firestore";
+import {useRouter} from 'next/router';
 
 const Chats = () => {
   const user = auth.currentUser;
+  const router = useRouter();
   const [showAddUser, setShowAddUser] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [showLogOutBox, setShowLogOutBox] = useState(false);
-  const [selectedChat, setSelectedChat] = useState({});
-
-useEffect(() => {
-console.log('UseEffect ran from Chats')
-},[])
+  const [selectedChat, setSelectedChat] = useState("");
   const userChatRef = query(
     collection(db, "chats"),
     where("users", "array-contains", user.email)
