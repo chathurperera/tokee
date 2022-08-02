@@ -7,7 +7,7 @@ const Chat = () => {
         <Head>
             <title>Chat</title>
         </Head>
-        <h1>HEllo</h1>
+        
     </div>
   )
 }
