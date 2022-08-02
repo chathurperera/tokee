@@ -1,16 +1,15 @@
 import React, { useState } from "react";
-import powerOff from "../../assets/images/power-off.png";
-import addNewUser from "../../assets/images/addNewUser.png";
+import addNewUserIcon from "../../assets/images/addNewUser.png";
 import { MemoizedChatsList } from "../../components/ChatsList/ChatsList";
 import { MemoizedContactList } from "../../components/ContactList/ContactList";
 import styles from "../../components/ContactList/ContactList.module.scss";
 import AddContact from "../../components/AddContact/AddContact";
 import { db, auth } from "../../firebase-config";
-import { signOut } from "firebase/auth";
 import { doc, setDoc, collection, query, where } from "firebase/firestore";
 import Image from "next/image";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { useRouter } from "next/router";
+import LogOutBox from "../LogOutBox/LogOutBox";
 
 const SideBar = () => {
   const user = auth.currentUser;
@@ -43,12 +42,6 @@ const SideBar = () => {
     });
   };
 
-  const logout = () => {
-    setShowLogOutBox(false);
-    signOut(auth);
-    // navigate("/login");
-  };
-
   const chatAlreadyExists = (recipientEmail) => {
     return !!chatsSnapshot?.docs.find(
       (chat) =>
@@ -72,14 +65,7 @@ const SideBar = () => {
             />
           </div>
           <div className={styles.onlineDot}></div>
-          {showLogOutBox && (
-            <div className={styles.logOut}>
-              <p onClick={logout}>
-                <Image src={powerOff} alt="log out" />
-                Sign out
-              </p>
-            </div>
-          )}
+          {showLogOutBox && <LogOutBox setShowLogOutBox={setShowLogOutBox} />}
         </div>
         <div className={styles.search}>
           <svg
@@ -106,7 +92,7 @@ const SideBar = () => {
           <Image
             objectFit="contain"
             layout="responsive"
-            src={addNewUser}
+            src={addNewUserIcon}
             onClick={() => setShowAddUser((prevState) => !prevState)}
             alt="add new user"
           />
