@@ -13,7 +13,6 @@ import LogOutBox from "../LogOutBox/LogOutBox";
 
 const SideBar = () => {
   const user = auth.currentUser;
-  const router = useRouter();
   const [showAddUser, setShowAddUser] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [showLogOutBox, setShowLogOutBox] = useState(false);
@@ -23,8 +22,8 @@ const SideBar = () => {
     collection(db, "chats"),
     where("users", "array-contains", user.email)
   );
+  
   const [chatsSnapshot] = useCollection(userChatRef);
-  console.log("user", user);
 
   const addContact = async (newContactEmail) => {
     if (
